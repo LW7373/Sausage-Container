@@ -51,16 +51,28 @@ public class SausageContainer {
         return new Sausage();
     }
 
-    private void changeSausage(int a, int b, Sausage newSausage){
-
+    //update - nicholas xu
+    private void ChangeSausage(int a, int b, Sausage newSausage){
+        if (a>=0 && a < 12 ){
+            sausageArray[a] = newSausage;
+        }
+        else {
+            System.out.println("Invalid Parameters");
+        }
     }
 
     private void addSausage(int endingIndex, Sausage newSausage){
 
     }
 
-    private void clearSausage(int a, int b){ //Delete Sausage
-        //sausageArray[a][b] = new Sausage(); 
+    //delete - nicholas xu
+    private void clearSausage(int a, int b){
+        if (a>=0 && a<12){
+            sausageArray[a] = null;
+        }
+        else{
+            System.out.println("Invalid Parameters");
+        }
     }
 
 }
