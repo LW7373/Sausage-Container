@@ -198,6 +198,7 @@ public class Main{
   // Add a sausage - Lindsay
   public static void MainAddSausage(Sausage newSausage) {
     fullPackBox.AddSausage(newSausage);
+    arrayCapacity++;
   }
 
   // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS NATURAL INDEX (STARTING FROM 1, NOT 0)
@@ -227,7 +228,6 @@ public class Main{
       selectedSausage = scan.nextInt();
       try {
         fullPackBox.ChangeSausage(selectedSausage, newSausage);
-        arrayCapacity ++;
       } catch (Exception e) {
         System.out.println("Selected sausage is out of bounds!");
       }
