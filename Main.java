@@ -3,126 +3,248 @@ Moses Dong, Nicholas Xu, and Lindsay Wang
 Schenk
 AP CSA - Period 7
 Glizzy Goblin - Main
-19 September 2023
+25 September 2023
 */
 
 package dongwangxu.seven;
+import java.util.Arrays;
+import java.util.Scanner;
+
 import dongwangxu.seven.MeatTypeEnum.MeatType;
+import dongwangxu.seven.Sausage;
+import dongwangxu.seven.PackBox;
 
-public class Main {
+public class Main{
+  
+  // Lindsay
+  static Scanner scan = new Scanner(System.in);
+  private static PackBox fullPackBox = new PackBox();
+  static int arrayCapacity = 12;
+
+
   public static void main(String[] args) {
+
+    // Create sausages to put in sausageArray - Lindsay
+    Sausage[] sausageArray = new Sausage[arrayCapacity];
+    for (int saIndexDefault = 0; saIndexDefault < arrayCapacity; saIndexDefault += 3){
+      sausageArray[saIndexDefault] = new Sausage();
+      sausageArray[saIndexDefault + 1] = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true);
+      sausageArray[saIndexDefault + 2] = new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true);
+    }
     
-    // Default constructor - Lindsay
-    Sausage defaultSausage = new Sausage();
+    // Create a PackBox - Lindsay
+    fullPackBox = new PackBox("plastic", 25.5, 3.5, 40.0, 12, false, sausageArray);
+    System.out.println(fullPackBox.toString());
+    System.out.println("Sausage Contents: " + Arrays.toString(sausageArray));
 
-    // Dump
-    System.out.println(defaultSausage);
+    // Display Menu - Lindsay
+    showMainMenu();
+    scan.close();
+  }
 
-    // Change
-    defaultSausage.setProductName("Perfect Piggy Pizzazz");
-    defaultSausage.setMeatType(MeatType.pork);
-    defaultSausage.setProductionCost(1.50);
-    defaultSausage.setSellingPrice(4.49);
-    defaultSausage.setPackageWeight(700);
-    defaultSausage.setNumSausages(6);
-    defaultSausage.setSausageLength(4.5);
-    defaultSausage.setLeanMeatPercentage(25);
-    defaultSausage.setFatPercentage(75);
-    defaultSausage.setIsCooked(true);
+  // Main Menu System - Lindsay
+  public static void showMainMenu() {
+    System.out.println("--- MAIN MENU ---");
+    System.out.println("1. Add Sausage");
+    System.out.println("2. Read All Sausages");
+    System.out.println("3. Read One Sausage");
+    System.out.println("4. Update Sausage");
+    System.out.println("5. Delete Sausage");
+    System.out.println("0. Exit");
 
-    // Dump
-    System.out.println(defaultSausage);
+    // Get user input - Lindsay
+    System.out.print("Enter your Choice: ");
+    int option = scan.nextInt();
     
-    // Partial constructor 1 - Nicholas
-    Sausage mysterySausage = new Sausage("Merry Meat Mash", 1.8, 800, 4.99, 6);
+    // Do a specific operation based on the user's input - Lindsay
+    switch (option) {
+      // If 1, create a sausage - Lindsay
+      case 1:
+        System.out.println("Selected Add");
+        Sausage createdSausage = InputSausageFields();
+        MainAddSausage(createdSausage);
+        fullPackBox.ReadAllSausages();
+        showMainMenu();
+        break;
+      // If 2, read all sausages - Lindsay
+      case 2:
+        System.out.println("Selected Read All");
+        fullPackBox.ReadAllSausages();
+        showMainMenu();
+        break;
+      // If 3, read a specific sausage - Lindsay
+      case 3:
+        System.out.println("Selected Read One");
+        MainReadOneSausage();
+        showMainMenu();
+        break;
+      // If 4, update a sausage - Lindsay
+      case 4:
+        System.out.println("Selected Update");
+        Sausage updatedSausage = InputSausageFields();
+        MainUpdateSausage(updatedSausage);
+        fullPackBox.ReadAllSausages();
+        showMainMenu();
+        break;
+      // If 5, delete a sausage - Lindsay
+      case 5:
+        System.out.println("Selected Delete");
+        MainDeleteSausage();
+        showMainMenu();
+        break;
+      // If 0, terminate program - Lindsay
+      case 0:
+        System.out.println("Terminating...");
+        System.exit(0);
+        break;
+      // Else - Lindsay
+      default:
+        System.out.println("Invalid option!");
+        showMainMenu();
+    }
+  }
+
+  // Allows user to input sausage fields (used for create and update) - Lindsay
+  public static Sausage InputSausageFields() {
+    String sProductName;
+    MeatType SMeatType = MeatType.beef;
+    double sProductionCost;
+    double sSellingPrice;
+    double sSausageLength;
+    int sFatPercentage;
+    boolean sIsCooked = true;
+    Sausage newSausage = new Sausage();
     
-    System.out.println(mysterySausage);
+    // User inputs values for the sausage - Lindsay
+    System.out.println("Please input the values for your sausage specs below:");
+
+    System.out.print("Product Name: ");
+    sProductName = scan.next();
+
+    System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. venison, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
+    int switchFillingVal = scan.nextInt();
+    switch (switchFillingVal) {
+      case 1:
+        SMeatType = MeatType.beef;
+        break;
+      case 2:
+        SMeatType = MeatType.pork;
+        break;
+      case 3:
+        SMeatType = MeatType.chicken;
+        break;
+      case 4:
+        SMeatType = MeatType.venison;
+        break;
+      case 5:
+        SMeatType = MeatType.turkey;
+        break;
+      case 6:
+        SMeatType = MeatType.lamb;
+        break;
+      case 7:
+        SMeatType = MeatType.vegan;
+        break;
+      case 8:
+        SMeatType = MeatType.mystery;
+        break;
+      default:
+        SMeatType = MeatType.pork;
+        System.out.println("Invalid entry, default set to pork.");
+        break;
+    }
+
+    // Do whiles for catching out-of-bounds values - Lindsay
+    do{
+      System.out.print("Production Cost: ");
+      sProductionCost = scan.nextDouble();
+    }while(sProductionCost < 0);
+
+    do{
+      System.out.print("Selling Price: ");
+      sSellingPrice = scan.nextDouble();
+    }while(sSellingPrice < 0);
+
+    do{
+      System.out.print("Sausage Length: ");
+      sSausageLength = scan.nextDouble();
+    }while(sSausageLength < 0);
+
+    do{
+      System.out.print("Fat Percentage (up to 50): ");
+      sFatPercentage = scan.nextInt();
+    }while((sFatPercentage < 0) || (sFatPercentage > 50));
+
+    System.out.print("Cooked (1. true, 2. false)? ");
+    int switchCookedVal = scan.nextInt();
+    switch (switchCookedVal) {
+      case 1:
+        sIsCooked = true;
+        break;
+      case 2:
+        sIsCooked = false;
+        break;
+      default:
+        sIsCooked = false;
+        System.out.println("Invalid entry, default set to false.");
+        break;
+    }
     
-    mysterySausage.setProductName("Mini Meat Mash");
-    mysterySausage.setMeatType(MeatType.mystery);
-    mysterySausage.setProductionCost(1.8);
-    mysterySausage.setPackageWeight(800);
-    mysterySausage.setNumSausages(10);
-    mysterySausage.setSellingPrice(4.99);
-    mysterySausage.setSausageLength(6);
-    mysterySausage.setLeanMeatPercentage(80);
-    mysterySausage.setFatPercentage(20);
-    mysterySausage.setIsCooked(true);
+    // Create a sausage based on input values - Lindsay
+    newSausage = new Sausage(sProductName, SMeatType, sProductionCost, sSellingPrice, sSausageLength, sFatPercentage, sIsCooked);
+    return newSausage;
+  }
 
-    System.out.println(mysterySausage);
-    
-    // Partial constructor 2 - Nicholas
-    Sausage miniSausage = new Sausage("Slimming Sausages for Weight Loss", MeatType.turkey, 16, 3, 85, 15);
+  // Add a sausage - Lindsay
+  public static void MainAddSausage(Sausage newSausage) {
+    fullPackBox.AddSausage(newSausage);
+  }
 
-    System.out.println(miniSausage);
+  // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS NATURAL INDEX (STARTING FROM 1, NOT 0)
 
-    miniSausage.setProductName("Slimming Sausages for Weight Loss");
-    miniSausage.setMeatType(MeatType.turkey);
-    miniSausage.setProductionCost(3.8);
-    miniSausage.setPackageWeight(900);
-    miniSausage.setNumSausages(18);
-    miniSausage.setSellingPrice(8.49);
-    miniSausage.setSausageLength(2.75);
-    miniSausage.setLeanMeatPercentage(85);
-    miniSausage.setFatPercentage(15);
-    miniSausage.setIsCooked(true);
+  // Read a specific sausage - Lindsay
+  public static void MainReadOneSausage() {
+    int selectedSausage;
+    // boolean isNum = false;
+    do{
+      System.out.print("Which sausage would you like to view? ");
+      selectedSausage = scan.nextInt();
+      try {
+        // selectedSausage = Integer.parseInt(scan.next());
+        // isNum = true;
+        fullPackBox.ReadOneSausage(selectedSausage);
+      } catch (Exception e) {
+        System.out.println("Selected sausage is out of bounds!");
+      }
+    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1)); // || (isNum == false));
+  }
 
-    System.out.println(miniSausage);
-    
-    // Partial Constructor 3  - Moses
-    Sausage nutritionSausage = new Sausage("Sausage Yay", MeatType.vegan, 20, 20, 7, 70, 30, false);
+  // Update a sausage - Lindsay
+  public static void MainUpdateSausage(Sausage newSausage){
+    int selectedSausage;
+    do{
+      System.out.print("Which sausage would you like to update? ");
+      selectedSausage = scan.nextInt();
+      try {
+        fullPackBox.ChangeSausage(selectedSausage, newSausage);
+        arrayCapacity ++;
+      } catch (Exception e) {
+        System.out.println("Selected sausage is out of bounds!");
+      }
+    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
+  }
 
-    System.out.println(nutritionSausage);
-
-    nutritionSausage.setProductName("The Most Nutritious Sausages");
-    nutritionSausage.setMeatType(MeatType.beef);
-    nutritionSausage.setProductionCost(6.00);
-    nutritionSausage.setSellingPrice(10.49);
-    nutritionSausage.setPackageWeight(1100);
-    nutritionSausage.setNumSausages(8);
-    nutritionSausage.setSausageLength(10);
-    nutritionSausage.setLeanMeatPercentage(50);
-    nutritionSausage.setFatPercentage(50);
-    nutritionSausage.setIsCooked(true);
-
-    System.out.println(nutritionSausage);
-
-    // Partial Constructor 4  - Moses
-    Sausage economySausage = new Sausage("Cheap Affordable Sausages", MeatType.venison, 2.90, 3.20, 190, 12);
-
-    System.out.println(economySausage);
-    economySausage.setProductName("Economical Brand Sausages");
-    economySausage.setMeatType(MeatType.chicken);
-    economySausage.setProductionCost(1.50);
-    economySausage.setSellingPrice(2.29);
-    economySausage.setPackageWeight(150);
-    economySausage.setNumSausages(9);
-    economySausage.setSausageLength(5);
-    economySausage.setLeanMeatPercentage(50);
-    economySausage.setFatPercentage(50);
-    economySausage.setIsCooked(true);
-
-    System.out.println(economySausage);
-    
-    // Full constructor - Lindsay
-    Sausage fullSausage = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 700, 6, 5.0, 20, 80, true);
-
-    // Dump
-    System.out.println(fullSausage);
-
-    // Change
-    fullSausage.setProductName("Terrific Twisted Turkey");
-    fullSausage.setMeatType(MeatType.turkey);
-    fullSausage.setProductionCost(1.75);
-    fullSausage.setSellingPrice(4.99);
-    fullSausage.setPackageWeight(850);
-    fullSausage.setNumSausages(8);
-    fullSausage.setSausageLength(4.25);
-    fullSausage.setLeanMeatPercentage(40);
-    fullSausage.setFatPercentage(60);
-    fullSausage.setIsCooked(false);
-
-    // Dump
-    System.out.println(fullSausage);
+  // Delete a sausage - Lindsay
+  public static void MainDeleteSausage() {
+    int selectedSausage;
+    do{
+      System.out.print("Which sausage would you like to delete? ");
+      selectedSausage = scan.nextInt();
+      try {
+        fullPackBox.DeleteSausage(selectedSausage);
+      } catch (Exception e) {
+        System.out.println("Selected sausage is out of bounds!");
+      }
+    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
   }
 }
