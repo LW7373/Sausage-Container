@@ -14,7 +14,7 @@ import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
 import dongwangxu.seven.PackBox;
 
-public class Main2{
+public class Main{
   
   // Lindsay
   static Scanner scan = new Scanner(System.in);
