@@ -1,5 +1,5 @@
 /*
-Moses Dong, Nicholas Xu, and Lindsay Wang
+Moses Dong, Lindsay Wang, and Nicholas Xu
 Schenk
 AP CSA - Period 7
 Glizzy Goblin - Sausage Container Class
