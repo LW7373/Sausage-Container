@@ -1,199 +1,171 @@
 /*
-Moses Dong, Nicholas Xu, and Lindsay Wang
+Moses Dong, Lindsay Wang, and Nicholas Xu
 Schenk
 AP CSA - Period 7
-Glizzy Goblin - Sausage Container Class
+Glizzy Goblin - Sausage Class
 25 September 2023
 */
 
 package dongwangxu.seven;
-
 import dongwangxu.seven.MeatTypeEnum.MeatType;
-import dongwangxu.seven.Sausage;
 
-public class PackBox{
+public class Sausage{
 
     // Class fields
-    private String material;
-    private double length;
-    private double width;
-    private double height;
-    private int numSausageLinks;
-    private boolean isShipped;
-    // Moses added shippingStatus variable, added it to constructors, toString, and Main
-    private String shippingStatus;
-    private Sausage[] sausageArray;
+    private String productName;  
+    private MeatType MeatType;
+    private double productionCost;
+    private double sellingPrice;
+    private double sausageLength;
+    private int fatPercentage;
+    private boolean isCooked;
 
-    //Default Constructor - Moses
-    public PackBox(){
-        this.material = "Plastic";
-        this.length = 10.0;
-        this.width = 10.0;
-        this.height = 10.0;
-        this.numSausageLinks = 10;
-        this.isShipped = false;
-        this.shippingStatus = "In Warehouse";
-        this.sausageArray = new Sausage[100];
+    // Default constructor - Lindsay
+    public Sausage(){
+        this.productName = "Classic Beef Sausage";
+        this.MeatType = MeatType.beef;
+        this.productionCost = 2.00;
+        this.sausageLength = 4.0;
+        this.fatPercentage = 70;
+        this.isCooked = false;
     }
 
-    // Partial Constructor 1 - Moses
-    public PackBox(String material, double length, double width, double height){
-        this.material = material;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-        this.numSausageLinks = 10;
-        this.isShipped = false;
-        this.shippingStatus = "In Warehouse";
-        this.sausageArray = new Sausage[100];
+    // Partial constructor 1 - Nicholas
+    public Sausage(String productName, double productionCost, double sausageLength){
+        this.productName = "Mega Meat Mash";
+        this.MeatType = MeatType.mystery;
+        this.productionCost = 3.60;
+        this.sausageLength = 12.0;
+        this.fatPercentage = 75;
+        this.isCooked = false;
     }
 
-    // Partial Constructor 2 - Nicholas
-    public PackBox(String material, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray){
-        this.material = material;
-        this.length = 8;
-        this.width = 12;
-        this.height = 9;
-        this.numSausageLinks = numSausageLinks;
-        this.isShipped = isShipped;
-        this.shippingStatus = shippingStatus;
-        this.sausageArray = sausageArray;
-    }
-    
-
-    // Full Constructor - Lindsay
-    public PackBox(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
-        this.material = material;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-        this.numSausageLinks = numSausageLinks;
-        this.isShipped = isShipped;
-        this.shippingStatus = shippingStatus;
-        this.sausageArray = sausageArray;
+    // Partial constructor 2 - Nicholas
+    public Sausage(String productName, MeatType meatType, double sausageLength, int fatPercentage){
+        this.productName = "Diet Glizzy";
+        this.MeatType = MeatType.chicken;
+        this.productionCost = 3.10;
+        this.sellingPrice = 7.49;
+        this.sausageLength = 3.0;
+        this.fatPercentage = 10;
+        this.isCooked = false;
     }
 
-    // GETTERS AND SETTERS - Nicholas
-    public String getMaterial(){
-        return this.material;
+    // Partial Constructor 3 - Moses (Nutrition)
+    public Sausage(String productName, MeatType meatType, double sausageLength, int fatPercentage, boolean isCooked){
+        this.productName = productName;
+        this.MeatType = meatType;
+        this.sausageLength = sausageLength;
+        this.fatPercentage = fatPercentage;
+        this.isCooked = isCooked;
+        this.productionCost = 2.00;
+        this.sellingPrice = 4.99;
     }
 
-    public void setMaterial(String material){
-        this.material = material;
+    // Partial Constructor 4 - Moses (Economics)
+    public Sausage(String productName, MeatType meatType, double productionCost, double sellingPrice){
+        this.productName = productName;
+        this.MeatType = meatType;
+        this.productionCost = productionCost;
+        this.sellingPrice = sellingPrice;
+        this.sausageLength = 3.0;
+        this.fatPercentage = 10;
+        this.isCooked = true;
     }
 
-    public double getLength(){
-        return this.length;
+    // Full constructor - Lindsay
+    public Sausage(String productName, MeatType meatType, double productionCost, double sellingPrice, double sausageLength, int fatPercentage, boolean isCooked){
+        this.productName = productName;
+        this.MeatType = meatType;
+        this.productionCost = productionCost;
+        this.sellingPrice = sellingPrice;
+        this.sausageLength = sausageLength;
+        this.fatPercentage = fatPercentage;
+        this.isCooked = isCooked;
     }
 
-    public void setLength(double length){
-        this.length = length;
+    // Getters and setters - Lindsay
+    public String getProductName(){
+        // User validation goes here
+        return this.getProductName();
     }
 
-    public double getWidth(){
-        return this.width;
+    public void setProductName(String productName){
+        // User validation goes here
+        this.productName = productName;
     }
 
-    public void setWidth(double width){
-        this.width = width;
+    public MeatType getMeatType(){
+        // User validation goes here
+        return this.getMeatType();
     }
 
-    public double getHeight(){
-        return this.height;
+    public void setMeatType(MeatType meatType){
+        // User validation goes here
+        this.MeatType = meatType;
     }
 
-    public void setHeight(double height){
-        this.height = height;
+    public double getProductionCost(){
+        // User validation goes here
+        return this.getProductionCost();
     }
 
-    public int getNumSausageLinks(){
-        return this.numSausageLinks;
+    public void setProductionCost(double productionCost){
+        // User validation goes here
+        this.productionCost = productionCost;
     }
 
-    public void setNumSausageLinks(int numSausageLinks){
-        this.numSausageLinks = numSausageLinks;
+    public double getSellingPrice(){
+        // User validation goes here
+        return this.getSellingPrice();
     }
 
-    public boolean isShipped(){
-        return this.isShipped;
+    public void setSellingPrice(double sellingPrice){
+        // User validation goes here
+        this.sellingPrice = sellingPrice;
     }
 
-    public void setShipped(boolean isShipped){
-        this.isShipped = isShipped;
+    public double getSausageLength(){
+        // User validation goes here
+        return this.getSausageLength();
     }
 
-    public String getShippingStatus(){
-        return this.shippingStatus;
+    public void setSausageLength(double sausageLength){
+        // User validation goes here
+        this.sausageLength = sausageLength;
     }
 
-    public void setShippingStatus(String shippingStatus){
-        this.shippingStatus = shippingStatus;
+    public int getFatPercentage(){
+        // User validation goes here
+        return this.getFatPercentage();
     }
 
-    public Sausage[] getSausageArray(){
-        return this.sausageArray;
+    public void setFatPercentage(int fatPercentage){
+        // User validation goes here
+        this.fatPercentage = fatPercentage;
     }
 
-    public void setSausageArray(Sausage[] sausageArray){
-        this.sausageArray = sausageArray;
+    public boolean isCooked(){
+        // User validation goes here
+        return this.isCooked;
     }
 
-    
-    // CRUD
-    public void AddSausage(Sausage newSausage){        
-        int arrayLen =  this.sausageArray.length;
-        Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
-        System.arraycopy(sausageArray, 0, sausageArrayNew, 0, arrayLen);
-        sausageArrayNew[arrayLen] = newSausage; 
-        this.setSausageArray(sausageArrayNew);
+    public void setIsCooked(boolean isCooked){
+        // User validation goes here
+        this.isCooked = isCooked;
     }
 
-    public void ReadAllSausages(){
-        int arrayLen = this.sausageArray.length;
-        for (int i = 0; i < arrayLen; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
-        }
-    }
-
-    public void ReadOneSausage(int selectedSausage){
-        System.out.println("Sausage " + (selectedSausage) + ": " + sausageArray[selectedSausage - 1]);
-    }
-
-    public void ChangeSausage(int selectedSausage, Sausage newSausage){
-        this.sausageArray[selectedSausage - 1] = newSausage;
-        this.setSausageArray(sausageArray);
-        System.out.println("Updated Sausage " + selectedSausage); // change for user input
-        // for (int i = 0; i < sausageArray.length; i++){
-        //     System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
-        // }
-    }
-
-    public void DeleteSausage(int selectedSausage){
-        int arrayLen =  this.sausageArray.length;
-        Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];
-        for(int i = 0, k = 0; i < arrayLen; i++){
-            if(i != (selectedSausage - 1)){
-                sausageArrayNew[k] = this.sausageArray[i];
-                k++;
-            }
-        }
-        this.setSausageArray(sausageArrayNew);
-        System.out.println("Deleted Sausage " + selectedSausage + "\n");
-        for (int i = 0; i < arrayLen - 1; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
-        }
-    }
-
+    // toString display - Lindsay
     public String toString(){
-        String s = "PackBox Stats\n";
+        String s = "Sausage Stats\n";
         s += "============================\n";
-        s += "Material: " + this.material + "\n";
-        s += "Length (inches): " + this.length + "\n";
-        s += "Width (inches): " + this.width + "\n";
-        s += "Height (inches): " + this.height + "\n";
-        s += "NumSausageLinks: " + this.numSausageLinks + "\n";
-        s += "Shipped? " + this.isShipped + "\n";
-        s += "Shipping Status: " + this.shippingStatus;
+        s += "Sausage Name: " + this.productName + "\n";
+        s += "Meat Filling: " + this.MeatType + "\n";
+        s += "Production Cost: " + this.productionCost + "\n";
+        s += "Selling Price: " + this.sellingPrice + "\n";
+        s += "Sausage Length (inches): " + this.sausageLength + "\n";
+        s += "Fat Percentage: " + this.fatPercentage + "\n";
+        s += "Cooked? " + this.isCooked + "\n";
 
         return s;
     }
