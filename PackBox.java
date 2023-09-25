@@ -20,9 +20,11 @@ public class PackBox{
     private double height;
     private int numSausageLinks;
     private boolean isShipped;
-    // Moses added shippingStatus variable, added it to constructors, toString, and Main
+    // Moses added shippingStatus variable, implemented it into constructors, toString, and Main
     private String shippingStatus;
     private Sausage[] sausageArray;
+
+    // CONSTRUCTORS
 
     //Default Constructor - Moses
     public PackBox(){
@@ -49,8 +51,16 @@ public class PackBox{
     }
 
     // Partial Constructor 2 - Nicholas
-
-    
+    public PackBox(String material, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray){
+        this.material = material;
+        this.length = 8;
+        this.width = 12;
+        this.height = 9;
+        this.numSausageLinks = numSausageLinks;
+        this.isShipped = isShipped;
+        this.shippingStatus = shippingStatus;
+        this.sausageArray = sausageArray;
+    }
 
     // Full Constructor - Lindsay
     public PackBox(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
@@ -65,6 +75,8 @@ public class PackBox{
     }
 
     // GETTERS AND SETTERS - Nicholas
+
+    // material
     public String getMaterial(){
         return this.material;
     }
@@ -73,6 +85,7 @@ public class PackBox{
         this.material = material;
     }
 
+    // length
     public double getLength(){
         return this.length;
     }
@@ -81,6 +94,7 @@ public class PackBox{
         this.length = length;
     }
 
+    // width
     public double getWidth(){
         return this.width;
     }
@@ -89,6 +103,7 @@ public class PackBox{
         this.width = width;
     }
 
+    // height
     public double getHeight(){
         return this.height;
     }
@@ -97,6 +112,7 @@ public class PackBox{
         this.height = height;
     }
 
+    // numSausageLinks
     public int getNumSausageLinks(){
         return this.numSausageLinks;
     }
@@ -105,6 +121,7 @@ public class PackBox{
         this.numSausageLinks = numSausageLinks;
     }
 
+    // isShipped
     public boolean isShipped(){
         return this.isShipped;
     }
@@ -113,6 +130,7 @@ public class PackBox{
         this.isShipped = isShipped;
     }
 
+    // shippingStatus
     public String getShippingStatus(){
         return this.shippingStatus;
     }
@@ -121,6 +139,7 @@ public class PackBox{
         this.shippingStatus = shippingStatus;
     }
 
+    // sausageArray
     public Sausage[] getSausageArray(){
         return this.sausageArray;
     }
@@ -129,8 +148,9 @@ public class PackBox{
         this.sausageArray = sausageArray;
     }
 
-    
     // CRUD
+
+    // Create a sausage - Lindsay
     public void AddSausage(Sausage newSausage){        
         int arrayLen =  this.sausageArray.length;
         Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
@@ -139,6 +159,7 @@ public class PackBox{
         this.setSausageArray(sausageArrayNew);
     }
 
+    // Read all sausages - Lindsay
     public void ReadAllSausages(){
         int arrayLen = this.sausageArray.length;
         for (int i = 0; i < arrayLen; i++){
@@ -146,19 +167,19 @@ public class PackBox{
         }
     }
 
+    // Read a specific sausage - Lindsay
     public void ReadOneSausage(int selectedSausage){
         System.out.println("Sausage " + (selectedSausage) + ": " + sausageArray[selectedSausage - 1]);
     }
 
+    // Update a sausage - Lindsay
     public void ChangeSausage(int selectedSausage, Sausage newSausage){
         this.sausageArray[selectedSausage - 1] = newSausage;
         this.setSausageArray(sausageArray);
-        System.out.println("Updated Sausage " + selectedSausage); // change for user input
-        // for (int i = 0; i < sausageArray.length; i++){
-        //     System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
-        // }
+        System.out.println("Updated Sausage " + selectedSausage + "\n");
     }
 
+    // Delete a sausage - Lindsay
     public void DeleteSausage(int selectedSausage){
         int arrayLen =  this.sausageArray.length;
         Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];
@@ -175,6 +196,7 @@ public class PackBox{
         }
     }
 
+    // toString display method - Nicholas
     public String toString(){
         String s = "PackBox Stats\n";
         s += "============================\n";
