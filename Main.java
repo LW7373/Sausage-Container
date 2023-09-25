@@ -16,7 +16,7 @@ import dongwangxu.seven.PackBox;
 
 // Note: Moses implemented new shippingStatus variable into all aspects
 
-public class Main{
+public class Main2{
   
   static Scanner scan = new Scanner(System.in);
   private static PackBox fullPackBox = new PackBox();
@@ -83,7 +83,7 @@ public class Main{
       }      
     } while (nNum); 
     
-    // Do a specific operation based on the user's input - Lindsay
+    // Switch to do a specific operation based on the user's input - Lindsay
     switch (option) {
       // If 1, create a sausage - Lindsay
       case 1:
@@ -126,6 +126,7 @@ public class Main{
         MainDeleteSausage();
         showMainMenu();
         break;
+      // If 6, display other box (container) stats
       case 6:
         System.out.print("\033\143");
         System.out.println("Selected Display Box\n");
@@ -138,7 +139,7 @@ public class Main{
         System.out.println("Terminating...");
         System.exit(0);
         break;
-      // Else - Lindsay
+      // Backup for if the user inputs an invalid option and try-catches don't work
       default:
         System.out.println("Invalid option!");
         showMainMenu();
@@ -159,18 +160,21 @@ public class Main{
     // User inputs values for the sausage - Lindsay
     System.out.println("Please input the values for your sausage specs below:\n");
 
+    // sProductName - Lindsay
     System.out.print("Product Name: ");
     sProductName = scan.next();
 
-    System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. venison, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
+    // Do whiles used for catching out-of-bounds values - Lindsay
 
+    // SMeatType - Lindsay
+    System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. venison, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
     int switchFillingVal = 0;
     boolean nNum;
     // Valid input must be a number    
     do { 
       try{
-        // Validate non Number
-        if (!scan.hasNextInt() ){
+        // Validate non-number
+        if (!scan.hasNextInt()){
         System.out.print("Meat Filling: ");
         scan.next();
         nNum = true;
@@ -180,7 +184,7 @@ public class Main{
         if ((switchFillingVal > 8) || (switchFillingVal <= 0)){
           System.out.print("Meat Filling: ");          
           nNum = true;
-        }else{
+        } else {
           nNum = false;
         }
       }
@@ -190,6 +194,8 @@ public class Main{
         nNum = true;
       }      
     } while (nNum); 
+    
+    // Set SMeatType based on the user int input - Lindsay
     switch (switchFillingVal) {
       case 1:
         SMeatType = MeatType.beef;
@@ -215,14 +221,14 @@ public class Main{
       case 8:
         SMeatType = MeatType.mystery;
         break;
+      // Backup for if the user inputs an invalid option and try-catches don't work
       default:
         SMeatType = MeatType.pork;
         System.out.println("Invalid entry, default set to pork.");
         break;
     }
 
-    // Do whiles for catching out-of-bounds values - Lindsay
-
+    // sProductionCost - Lindsay
     System.out.print("Production Cost: ");
     sProductionCost = 0;
     boolean proDouble;
@@ -230,27 +236,28 @@ public class Main{
     do { 
       try{
         // Validate non-number
-        if (!scan.hasNextDouble() ){
+        if (!scan.hasNextDouble()){
           System.out.print("Production Cost: ");
           scan.next();
           proDouble = true;
-        }      
+        }
         sProductionCost = scan.nextDouble();
         // Validate number range
         if (sProductionCost < 0){
           System.out.print("Production Cost: ");          
           proDouble = true;
-        }else{
+        } else {
           proDouble = false;
         }
       }
       catch(Exception e){
         System.out.print("Production Cost: ");     
-        scan.next(); 
+        scan.next();
         proDouble = true;
-      }      
-    } while (proDouble); 
-     
+      }
+    } while (proDouble);
+    
+    // sSellingPrice - Lindsay
     System.out.print("Selling Price: ");
     sSellingPrice = 0;
     boolean sellDouble;
@@ -258,7 +265,7 @@ public class Main{
     do { 
       try{
         // Validate non-number
-        if (!scan.hasNextDouble() ){
+        if (!scan.hasNextDouble()){
           System.out.print("Selling Price: ");
           scan.next();
           sellDouble = true;
@@ -268,7 +275,7 @@ public class Main{
         if (sSellingPrice < 0){
           System.out.print("Selling Price: ");          
           sellDouble = true;
-        }else{
+        } else {
           sellDouble = false;
         }
       }
@@ -279,6 +286,7 @@ public class Main{
       }      
     } while (sellDouble);   
     
+    // sSausageLength - Lindsay
     System.out.print("Sausage Length: ");   
     sSausageLength = 0;
     boolean lenDouble;
@@ -305,8 +313,9 @@ public class Main{
         scan.next(); 
         lenDouble = true;
       }      
-    } while (lenDouble);   
-    
+    } while (lenDouble);
+
+    // sFatPercentage - Lindsay
     System.out.print("Fat Percentage (up to 50): ");
     sFatPercentage = 0;
     boolean fatNum;
@@ -335,6 +344,7 @@ public class Main{
       }      
     } while (fatNum);     
      
+    // sIsCooked - Lindsay
     System.out.print("Cooked (1. true, 2. false)? ");
     int switchCookedVal = 0;
     boolean cookNum;
@@ -373,28 +383,28 @@ public class Main{
         sIsCooked = false;
         System.out.println("Invalid entry, default set to false.");
         break;
-    }
+    } 
     
     // Create a sausage based on input values - Lindsay
     newSausage = new Sausage(sProductName, SMeatType, sProductionCost, sSellingPrice, sSausageLength, sFatPercentage, sIsCooked);
     return newSausage;
   }
 
-  // Add a sausage - Lindsay
+  // Add a sausage (uses sausage created in InputSausageFields()) - Lindsay
   public static void MainAddSausage(Sausage newSausage) {
     fullPackBox.AddSausage(newSausage);
     arrayCapacity++;
   }
 
-  // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS NATURAL INDEX (STARTING FROM 1, NOT 0)
+  // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS "NATURAL" INDEX (STARTING FROM 1, NOT 0)
 
   // Read a specific sausage - Lindsay
   public static void MainReadOneSausage() {
     int selectedSausage;
-    // boolean isNum = false;
     do{
       System.out.print("Which sausage would you like to view? ");
       selectedSausage = scan.nextInt();
+      System.out.println("");
       try {
         fullPackBox.ReadOneSausage(selectedSausage);
       } catch (Exception e) {
