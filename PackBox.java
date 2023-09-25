@@ -36,7 +36,7 @@ public class PackBox{
         this.sausageArray = new Sausage[100];
     }
 
-    // Partial Constructor - Moses
+    // Partial Constructor 1 - Moses
     public PackBox(String material, double length, double width, double height){
         this.material = material;
         this.length = length;
@@ -47,6 +47,10 @@ public class PackBox{
         this.shippingStatus = "In Warehouse";
         this.sausageArray = new Sausage[100];
     }
+
+    // Partial Constructor 2 - Nicholas
+
+    
 
     // Full Constructor - Lindsay
     public PackBox(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
