@@ -1,4 +1,4 @@
-/*
+/*lengthInches
 Moses Dong, Nicholas Xu, and Lindsay Wang
 Schenk
 AP CSA - Period 7
@@ -12,34 +12,54 @@ import dongwangxu.seven.Sausage;
 
 public class PackBox{
 
+    // Moses Work Zone Starts
     // Class fields
     private String material;
-    private double length;
-    private double width;
-    private double height;
+    private String shippingStatus;//New
+    private double lengthInches;//Replaced with "lengthInches"
+    private double widthInches;//Replaced with "widthInches"
+    private double heightInches;//Replaced with "heightInches"
     private int numSausageLinks;
-    private boolean isShipped;
+    private boolean isFull;//New, replaces other boolean
+
     private Sausage[] sausageArray;
-
+    
+    //Default Constructor
     public PackBox(){
-
+        this.material = "Plastic";
+        this.lengthInches = 10.0;
+        this.widthInches = 10.0;
+        this.heightInches = 10.0;
+        this.numSausageLinks = 10;
+        this.isFull = false;
+        this.shippingStatus = "In Warehouse";
+        this.sausageArray = new Sausage[100];
     }
-    public PackBox(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, Sausage[] sausageArray) {
+
+    //Box Partial Constructor
+    public PackBox(String material, double lengthInches, double widthInches, double heightInches){
         this.material = material;
-        this.length = length;
-        this.width = width;
-        this.height = height;
+        this.lengthInches = lengthInches;
+        this.widthInches = widthInches;
+        this.heightInches = heightInches;
+        this.numSausageLinks = 10;
+        this.isFull = false;
+        this.shippingStatus = "In Warehouse";
+        this.sausageArray = new Sausage[100];
+    }
+
+    // Full Constructor
+    public PackBox(String material, double lengthInches, double widthInches, double heightInches, int numSausageLinks, boolean isFull, String shippingStatus, Sausage[] sausageArray) {
+        this.material = material;
+        this.lengthInches = lengthInches;
+        this.widthInches = widthInches;
+        this.heightInches = heightInches;
         this.numSausageLinks = numSausageLinks;
-        this.isShipped = isShipped;
+        this.isFull = isFull;
+        this.shippingStatus = shippingStatus;
         this.sausageArray = sausageArray;
     }
-
-    //public Box(){
-    //    for (int a = 0; a < 24; a++){
-    //        sausageArray[a] = new Sausage();
-    //    }
-    //}
-
+    // Moses Work Zone Ends
 
     // GETTERS AND SETTERS
     public String getMaterial(){
@@ -50,28 +70,28 @@ public class PackBox{
         this.material = material;
     }
 
-    public double getLength(){
-        return this.length;
+    public double getlengthInches(){
+        return this.lengthInches;
     }
 
-    public void setLength(double length){
-        this.length = length;
+    public void setlengthInches(double lengthInches){
+        this.lengthInches = lengthInches;
     }
 
-    public double getWidth(){
-        return this.width;
+    public double getwidthInches(){
+        return this.widthInches;
     }
 
-    public void setWidth(double width){
-        this.width = width;
+    public void setwidthInches(double widthInches){
+        this.widthInches = widthInches;
     }
 
-    public double getHeight(){
-        return this.height;
+    public double getheightInches(){
+        return this.heightInches;
     }
 
-    public void setHeight(double height){
-        this.height = height;
+    public void setheightInches(double heightInches){
+        this.heightInches = heightInches;
     }
 
     public int getNumSausageLinks(){
@@ -82,21 +102,24 @@ public class PackBox{
         this.numSausageLinks = numSausageLinks;
     }
 
-    public boolean isShipped(){
-        return this.isShipped;
+    //Claimed
+    public boolean isFull(){
+        return this.isFull;
     }
 
-    public void setShipped(boolean isShipped){
-        this.isShipped = isShipped;
+    public void setShipped(boolean isFull){
+        this.isFull = isFull;
     }
 
-    public Sausage[] getSausageArray(){
-        return this.sausageArray;
-    }
+    // Do not use?, Use CRUD instead - Moses
+    // public Sausage[] getSausageArray(){//Redirect?
+    //     return this.sausageArray;
+    // }
 
-    public void setSausageArray(Sausage[] sausageArray){
-        this.sausageArray = sausageArray;
-    }
+    // public void setSausageArray(Sausage[] sausageArray){
+    //     this.sausageArray = sausageArray;
+    // }
+    //Claimed
 
 
     // verify input for arrayIndex and data type of sausageArray
@@ -104,7 +127,7 @@ public class PackBox{
     
     // CRUD
     public void AddSausage(Sausage newSausage){        
-        int arrayLen =  this.sausageArray.length;
+        int arrayLen =  this.sausageArray.lengthInches;
         Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
         System.arraycopy(sausageArray, 0, sausageArrayNew, 0, arrayLen);
         sausageArrayNew[arrayLen] = newSausage; 
@@ -112,7 +135,7 @@ public class PackBox{
     }
 
     public void ReadAllSausages(){
-        int arrayLen = this.sausageArray.length;
+        int arrayLen = this.sausageArray.lengthInches;
         for (int i = 0; i < arrayLen; i++){
             System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
         }
@@ -126,13 +149,13 @@ public class PackBox{
         this.sausageArray[selectedSausage - 1] = newSausage;
         this.setSausageArray(sausageArray);
         System.out.println("Updated Sausage " + selectedSausage); // change for user input
-        // for (int i = 0; i < sausageArray.length; i++){
+        // for (int i = 0; i < sausageArray.lengthInches; i++){
         //     System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
         // }
     }
 
     public void DeleteSausage(int selectedSausage){
-        int arrayLen =  this.sausageArray.length;
+        int arrayLen =  this.sausageArray.lengthInches;
         Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];
         for(int i = 0, k = 0; i < arrayLen; i++){
             if(i != (selectedSausage - 1)){
@@ -147,15 +170,17 @@ public class PackBox{
         }
     }
 
+    // Modified by Moses
     public String toString(){
-        String s = "PackBox Stats\n";
+        String s = "Box Stats\n";
         s += "============================\n";
         s += "Material: " + this.material + "\n";
-        s += "Length: " + this.length + "\n";
-        s += "Width: " + this.width + "\n";
-        s += "Height: " + this.height + "\n";
+        s += "lengthInches: " + this.lengthInches + "\n";
+        s += "widthInches: " + this.widthInches + "\n";
+        s += "heightInches: " + this.heightInches + "\n";
         s += "NumSausageLinks: " + this.numSausageLinks + "\n";
-        s += "Shipped? " + this.isShipped;
+        s += "Shipping Status: " + this.shippingStatus + "\n";
+        s += "Full? " + this.isFull;
 
         return s;
     }
