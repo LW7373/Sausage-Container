@@ -14,9 +14,10 @@ import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
 import dongwangxu.seven.PackBox;
 
+// Note: Moses implemented new shippingStatus variable into all aspects
+
 public class Main{
   
-  // Lindsay
   static Scanner scan = new Scanner(System.in);
   private static PackBox fullPackBox = new PackBox();
   static int arrayCapacity = 12;
@@ -25,7 +26,6 @@ public class Main{
   public static void main(String[] args) {
 
     // Create sausages to put in sausageArray - Lindsay
-    // Sausage[] sausageArray = new Sausage[arrayCapacity];
     for (int saIndexDefault = 0; saIndexDefault < arrayCapacity; saIndexDefault += 3){
       sausageArray[saIndexDefault] = new Sausage();
       sausageArray[saIndexDefault + 1] = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true);
@@ -33,9 +33,9 @@ public class Main{
     }
     
     // Create a PackBox - Lindsay
-    fullPackBox = new PackBox("plastic", 25.5, 3.5, 40.0, 12, false, sausageArray);
+    fullPackBox = new PackBox("plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
 
-    //Clear Screen
+    // Clear Screen - Nicholas added all clear screen lines
     System.out.print("\033\143");
 
     // Display Menu - Lindsay
@@ -83,8 +83,6 @@ public class Main{
       }      
     } while (nNum); 
     
-      
-      
     // Do a specific operation based on the user's input - Lindsay
     switch (option) {
       // If 1, create a sausage - Lindsay
@@ -166,7 +164,6 @@ public class Main{
 
     System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. venison, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
 
-    //int switchFillingVal = scan.nextInt();
     int switchFillingVal = 0;
     boolean nNum;
     // Valid input must be a number    
@@ -193,7 +190,6 @@ public class Main{
         nNum = true;
       }      
     } while (nNum); 
-
     switch (switchFillingVal) {
       case 1:
         SMeatType = MeatType.beef;
@@ -226,6 +222,7 @@ public class Main{
     }
 
     // Do whiles for catching out-of-bounds values - Lindsay
+
     System.out.print("Production Cost: ");
     sProductionCost = 0;
     boolean proDouble;
@@ -364,9 +361,7 @@ public class Main{
         scan.next(); 
         cookNum = true;
       }      
-    } while (cookNum); 
-    
-   
+    } while (cookNum);
     switch (switchCookedVal) {
       case 1:
         sIsCooked = true;
@@ -401,13 +396,11 @@ public class Main{
       System.out.print("Which sausage would you like to view? ");
       selectedSausage = scan.nextInt();
       try {
-        // selectedSausage = Integer.parseInt(scan.next());
-        // isNum = true;
         fullPackBox.ReadOneSausage(selectedSausage);
       } catch (Exception e) {
         System.out.println("Selected sausage is out of bounds!");
       }
-    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1)); // || (isNum == false));
+    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
   }
 
   // Update a sausage - Lindsay
