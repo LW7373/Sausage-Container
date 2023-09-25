@@ -14,7 +14,7 @@ import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
 import dongwangxu.seven.PackBox;
 
-// Note: Moses implemented new shippingStatus variable into all aspects
+// Note: Moses implemented new shippingStatus field into all aspects
 
 public class Main2{
   
