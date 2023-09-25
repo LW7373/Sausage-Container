@@ -1,5 +1,5 @@
 /*
-Moses Dong, Nicholas Xu, and Lindsay Wang
+Moses Dong, Lindsay Wang, and Nicholas Xu
 Schenk
 AP CSA - Period 7
 Glizzy Goblin - Main
@@ -7,7 +7,7 @@ Glizzy Goblin - Main
 */
 
 package dongwangxu.seven;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 import dongwangxu.seven.MeatTypeEnum.MeatType;
@@ -16,7 +16,7 @@ import dongwangxu.seven.PackBox;
 
 // Note: Moses implemented new shippingStatus field into all aspects
 
-public class Main2{
+public class Main{
   
   static Scanner scan = new Scanner(System.in);
   private static PackBox fullPackBox = new PackBox();
