@@ -184,7 +184,7 @@ public class PackBox{
         int arrayLen =  this.sausageArray.length;
         Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];
         for(int i = 0, k = 0; i < arrayLen; i++){
-            if(i != (selectedSausage - 1)){
+            if (i != (selectedSausage - 1)){
                 sausageArrayNew[k] = this.sausageArray[i];
                 k++;
             }
