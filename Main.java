@@ -15,6 +15,7 @@ import dongwangxu.seven.Sausage;
 import dongwangxu.seven.PackBox;
 
 // Note: Moses implemented new shippingStatus field into all aspects
+// Note: arrayCapacity changing commented out due to java array limitations - Moses
 
 public class Main{
   
@@ -257,7 +258,7 @@ public class Main{
       }
     } while (proDouble);
     
-    // sSellingPrice - Lindsay
+    // SellingPrice - Lindsay
     System.out.print("Selling Price: ");
     sSellingPrice = 0;
     boolean sellDouble;
@@ -286,7 +287,7 @@ public class Main{
       }      
     } while (sellDouble);   
     
-    // sSausageLength - Lindsay
+    // SausageLength - Lindsay
     System.out.print("Sausage Length: ");   
     sSausageLength = 0;
     boolean lenDouble;
@@ -394,7 +395,7 @@ public class Main{
   // Add a sausage (uses sausage created in InputSausageFields()) - Lindsay
   public static void MainAddSausage(Sausage newSausage) {
     fullPackBox.AddSausage(newSausage);
-    arrayCapacity++;
+    //arrayCapacity++;
   }
 
   // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS "NATURAL" INDEX (STARTING FROM 1, NOT 0)
@@ -497,6 +498,6 @@ public class Main{
     } while (deleteNum);
     
     fullPackBox.DeleteSausage(selectedSausage);
-    arrayCapacity--;
+    //arrayCapacity--;
   }
 }
