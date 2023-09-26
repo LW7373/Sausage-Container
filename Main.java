@@ -294,7 +294,7 @@ public class Main{
     do { 
       try{
         // Validate non-number
-        if (!scan.hasNextDouble() ){
+        if (!scan.hasNextDouble()){
           System.out.print("Sausage Length: ");
           scan.next();
           lenDouble = true;
@@ -304,7 +304,7 @@ public class Main{
         if (sSausageLength <= 0){
           System.out.print("Sausage Length: ");          
           lenDouble = true;
-        }else{
+        } else {
           lenDouble = false;
         }
       }
@@ -323,7 +323,7 @@ public class Main{
     do { 
       try{
         // Validate non-number
-        if (!scan.hasNextInt() ){
+        if (!scan.hasNextInt()){
           System.out.print("Fat Percentage (up to 50): ");
           scan.next();
           fatNum = true;
@@ -331,9 +331,9 @@ public class Main{
         sFatPercentage = scan.nextInt();
         // Validate number range
         if ((sFatPercentage < 0 )|| (sFatPercentage > 50)){
-          System.out.print("Fat Percentage (up to 50):");          
+          System.out.print("Fat Percentage (up to 50): ");          
           fatNum = true;
-        }else{
+        } else {
           fatNum = false;
         }
       }
@@ -352,17 +352,17 @@ public class Main{
     do { 
       try{
         // Validate non-number
-        if (!scan.hasNextInt() ){
-        System.out.print("Cooked (1. true, 2. false)?");
+        if (!scan.hasNextInt()){
+        System.out.print("Cooked (1. true, 2. false)? ");
         scan.next();
         cookNum = true;
         }      
         switchCookedVal = scan.nextInt();
         // Validate number range
-        if ((switchCookedVal > 2) || (switchCookedVal <=0)){
+        if ((switchCookedVal > 2) || (switchCookedVal <= 0)){
           System.out.print("Cooked (1. true, 2. false)? ");          
           cookNum = true;
-        }else{
+        } else {
           cookNum = false;
         }
       }
@@ -400,46 +400,102 @@ public class Main{
 
   // Read a specific sausage - Lindsay
   public static void MainReadOneSausage() {
-    int selectedSausage;
-    do{
-      System.out.print("Which sausage would you like to view? ");
-      selectedSausage = scan.nextInt();
-      System.out.println("");
-      try {
-        fullPackBox.ReadOneSausage(selectedSausage);
-      } catch (Exception e) {
-        System.out.println("Selected sausage is out of bounds!");
+    int selectedSausage = 0;
+    System.out.print("Which sausage would you like to view? ");
+    boolean readOneNum;
+    // Valid input must be a number    
+    do { 
+      try{
+        // Validate non-number
+        if (!scan.hasNextInt()){
+          System.out.print("Which sausage would you like to view? ");
+          scan.next();
+          readOneNum = true;
+        }      
+        selectedSausage = scan.nextInt();
+        // Validate number range
+        if ((selectedSausage > arrayCapacity) || (selectedSausage <= 0)){
+          System.out.print("Which sausage would you like to view? ");
+          readOneNum = true;
+        } else {
+          readOneNum = false;
+        }
       }
-    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
+      catch(Exception e){
+        System.out.print("Which sausage would you like to view? ");
+        scan.next();
+        readOneNum = true;
+      }      
+    } while (readOneNum);
+    
+    System.out.println("");
+    fullPackBox.ReadOneSausage(selectedSausage);
   }
 
   // Update a sausage - Lindsay
   public static void MainUpdateSausage(Sausage newSausage){
-    int selectedSausage;
-    do{
-      System.out.print("Which sausage would you like to update? ");
-      selectedSausage = scan.nextInt();
-      System.out.println("");
-      try {
-        fullPackBox.ChangeSausage(selectedSausage, newSausage);
-      } catch (Exception e) {
-        System.out.println("Selected sausage is out of bounds!\n");
+    int selectedSausage = 0;
+    System.out.print("Which sausage would you like to update? ");
+    boolean updateNum;
+    // Valid input must be a number    
+    do { 
+      try{
+        // Validate non-number
+        if (!scan.hasNextInt()){
+          System.out.print("Which sausage would you like to update? ");
+          scan.next();
+          updateNum = true;
+        }      
+        selectedSausage = scan.nextInt();
+        // Validate number range
+        if ((selectedSausage > arrayCapacity) || (selectedSausage <= 0)){
+          System.out.print("Which sausage would you like to update? ");
+          updateNum = true;
+        } else {
+          updateNum = false;
+        }
       }
-    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
+      catch(Exception e){
+        System.out.print("Which sausage would you like to update? ");
+        scan.next();
+        updateNum = true;
+      }      
+    } while (updateNum);
+    
+    fullPackBox.ChangeSausage(selectedSausage, newSausage);
   }
 
   // Delete a sausage - Lindsay
   public static void MainDeleteSausage() {
-    int selectedSausage;
-    do{
-      System.out.print("Which sausage would you like to delete? ");
-      selectedSausage = scan.nextInt();
-      System.out.println("");
-      try {
-        fullPackBox.DeleteSausage(selectedSausage);
-      } catch (Exception e) {
-        System.out.println("Selected sausage is out of bounds!\n");
+    int selectedSausage = 0;
+    System.out.print("Which sausage would you like to delete? ");
+    boolean deleteNum;
+    // Valid input must be a number    
+    do { 
+      try{
+        // Validate non-number
+        if (!scan.hasNextInt()){
+          System.out.print("Which sausage would you like to delete? ");
+          scan.next();
+          deleteNum = true;
+        }      
+        selectedSausage = scan.nextInt();
+        // Validate number range
+        if ((selectedSausage > arrayCapacity) || (selectedSausage <=0)){
+          System.out.print("Which sausage would you like to delete? ");
+          deleteNum = true;
+        } else {
+          deleteNum = false;
+        }
       }
-    } while((selectedSausage > arrayCapacity) || (selectedSausage < 1));
+      catch(Exception e){
+        System.out.print("Which sausage would you like to delete? ");
+        scan.next();
+        deleteNum = true;
+      }      
+    } while (deleteNum);
+    
+    fullPackBox.DeleteSausage(selectedSausage);
+    arrayCapacity--;
   }
 }
