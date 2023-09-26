@@ -35,10 +35,10 @@ public class PackBox{
         this.numSausageLinks = 10;
         this.isShipped = false;
         this.shippingStatus = "In Warehouse";
-        this.sausageArray = new Sausage[100];
+        this.sausageArray = new Sausage[100];//Far greater than necessary, also not mod 3
     }
 
-    // Partial Constructor 1 - Moses
+    // Partial Constructor 1 (The Box Itself) - Moses
     public PackBox(String material, double length, double width, double height){
         this.material = material;
         this.length = length;
@@ -122,7 +122,7 @@ public class PackBox{
     }
 
     // isShipped
-    public boolean isShipped(){
+    public boolean isShipped(){ // Returned to normal from isFull
         return this.isShipped;
     }
 
@@ -131,7 +131,7 @@ public class PackBox{
     }
 
     // shippingStatus
-    public String getShippingStatus(){
+    public String getShippingStatus(){ // Changed respectively - Moses
         return this.shippingStatus;
     }
 
@@ -140,7 +140,7 @@ public class PackBox{
     }
 
     // sausageArray
-    public Sausage[] getSausageArray(){
+    public Sausage[] getSausageArray(){// Returned to normal - Moses
         return this.sausageArray;
     }
 
@@ -167,9 +167,11 @@ public class PackBox{
         }
     }
 
-    // Read a specific sausage - Lindsay
-    public void ReadOneSausage(int selectedSausage){
-        System.out.println("Sausage " + (selectedSausage) + ": " + sausageArray[selectedSausage - 1]);
+    // Read a specific sausage - Lindsay, modified by Moses
+    public String ReadOneSausage(int selectedSausage){
+        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArray[selectedSausage - 1];
+        System.out.println(readOut);
+        return readOut;
     }
 
     // Update a sausage - Lindsay
@@ -182,14 +184,19 @@ public class PackBox{
     // Delete a sausage - Lindsay
     public void DeleteSausage(int selectedSausage){
         int arrayLen =  this.sausageArray.length;
-        Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];
-        for(int i = 0, k = 0; i < arrayLen; i++){
-            if (i != (selectedSausage - 1)){
-                sausageArrayNew[k] = this.sausageArray[i];
-                k++;
-            }
-        }
-        this.setSausageArray(sausageArrayNew);
+        // Original Size Changing
+        // Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];//Not necessary but cool :)
+        // for(int i = 0, k = 0; i < arrayLen; i++){
+        //     if (i != (selectedSausage - 1)){
+        //         sausageArrayNew[k] = this.sausageArray[i];
+        //         k++;
+        //     }
+        // }
+        // this.setSausageArray(sausageArrayNew);
+        
+        //Modification by Moses, disables changing array size for better or for worse
+        this.sausageArray[selectedSausage - 1] = new Sausage();//Use default
+
         System.out.println("\nDeleted Sausage " + selectedSausage + "\n");
         for (int i = 0; i < arrayLen - 1; i++){
             System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
@@ -206,8 +213,7 @@ public class PackBox{
         s += "Height (inches): " + this.height + "\n";
         s += "NumSausageLinks: " + this.numSausageLinks + "\n";
         s += "Shipped? " + this.isShipped + "\n";
-        s += "Shipping Status: " + this.shippingStatus;
-
+        s += "Shipping Status: " + this.shippingStatus; //Small Modification - Moses
         return s;
     }
 }
