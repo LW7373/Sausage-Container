@@ -26,10 +26,10 @@ public class Main{
   public static void main(String[] args) {
 
     // Create sausages to put in sausageArray - Lindsay
-    for (int saIndexDefault = 0; saIndexDefault < arrayCapacity; saIndexDefault += 3){
-      sausageArray[saIndexDefault] = new Sausage();
-      sausageArray[saIndexDefault + 1] = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true);
-      sausageArray[saIndexDefault + 2] = new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true);
+    for (int saIndex = 0; saIndex < arrayCapacity; saIndex += 3){
+      sausageArray[saIndex] = new Sausage();
+      sausageArray[saIndex + 1] = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true);
+      sausageArray[saIndex + 2] = new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true);
     }
     
     // Create a PackBox - Lindsay
