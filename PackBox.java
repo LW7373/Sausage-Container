@@ -176,7 +176,7 @@ public class PackBox{
     public void ChangeSausage(int selectedSausage, Sausage newSausage){
         this.sausageArray[selectedSausage - 1] = newSausage;
         this.setSausageArray(sausageArray);
-        System.out.println("Updated Sausage " + selectedSausage + "\n");
+        System.out.println("\nUpdated Sausage " + selectedSausage + "\n");
     }
 
     // Delete a sausage - Lindsay
@@ -190,7 +190,7 @@ public class PackBox{
             }
         }
         this.setSausageArray(sausageArrayNew);
-        System.out.println("Deleted Sausage " + selectedSausage + "\n");
+        System.out.println("\nDeleted Sausage " + selectedSausage + "\n");
         for (int i = 0; i < arrayLen - 1; i++){
             System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
         }
