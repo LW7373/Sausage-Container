@@ -379,6 +379,7 @@ public class Main{
       case 2:
         sIsCooked = false;
         break;
+      // Backup for if the user inputs an invalid option and try-catches don't work
       default:
         sIsCooked = false;
         System.out.println("Invalid entry, default set to false.");
